@@ -11,8 +11,10 @@ function build_mirror {
         echo "Creating Mirror: ${src_int} -> ${dst_int}"
     fi
 
-    # Force the source port up
+    # Force the source port up and make sure that the
+    # interface is in promiscuous mode.
     ip link set ${src_int} up
+    ip link set ${src_int} promisc on
 
     # Mirror the inbound traffic
     tc qdisc add dev ${src_int} ingress
