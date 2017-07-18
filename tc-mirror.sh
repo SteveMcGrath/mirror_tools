@@ -18,9 +18,9 @@ function build_mirror {
 
     # Mirror the inbound traffic
     tc qdisc add dev ${src_int} ingress
-    tc filter add dev ${src_int} parent ffff:    \
-        protocol all                            \
-        u32 match u8 0 0                        \
+    tc filter add dev ${src_int} parent ffff:       \
+        protocol all                                \
+        u32 match u8 0 0                            \
         action mirred egress mirror dev ${dst_int}
 
     # Mirror the outbound traffic
